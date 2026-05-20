@@ -42,8 +42,10 @@ const App = () => {
   useEffect(() => {
     dispatch(loadUser()).then((result) => {
       if (result?.meta?.requestStatus === "fulfilled") {
-        dispatch(fetchCart());
-        dispatch(fetchWishlist());
+        if (user) {
+          dispatch(fetchCart());
+          dispatch(fetchWishlist());
+        }
       }
     });
   }, [dispatch]);
